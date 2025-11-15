@@ -32,7 +32,40 @@ const comparisonData = [
 
 const riskData = [{ name: "Riesgo", value: 68, fill: "#3B82F6" }];
 
-const Dashboard = ({ onBack }) => {
+const quickActions = [
+  {
+    label: "Insight de empresa",
+    description: "Analiza métricas de Tesla con IA",
+    view: "companyInsight",
+  },
+  {
+    label: "Simulador",
+    description: "Proyecta ganancias con escenarios",
+    view: "investmentSimulator",
+  },
+  {
+    label: "Tendencias",
+    description: "Detecta movimientos clave del mercado",
+    view: "marketTrends",
+  },
+  {
+    label: "Comparador",
+    description: "Contrasta empresas lado a lado",
+    view: "companyComparator",
+  },
+  {
+    label: "Noticias",
+    description: "Revisa titulares y sentimiento",
+    view: "newsSentiment",
+  },
+  {
+    label: "Historial",
+    description: "Consulta tu actividad reciente",
+    view: "interactionHistory",
+  },
+];
+
+const Dashboard = ({ onBack, onNavigate }) => {
   return (
     <section className="mx-auto max-w-6xl px-6 py-16">
       <div className="space-y-10">
@@ -40,20 +73,53 @@ const Dashboard = ({ onBack }) => {
           <p className="text-sm font-medium uppercase tracking-[0.2em] text-blue-500">
             Portafolio Inteligente
           </p>
-          <h1 className="text-4xl font-bold text-slate-800">
+          <h1 className="text-4xl font-bold text-slate-800 dark:text-slate-100">
             Análisis Financiero Personalizado
           </h1>
-          <p className="max-w-2xl text-lg text-slate-600">
+          <p className="max-w-2xl text-lg text-slate-600 dark:text-slate-300">
             Basado en tus intereses y empresas seleccionadas, nuestra IA evalúa
             tendencias de crecimiento, comparativos sectoriales y el nivel de
             riesgo de tu portafolio.
           </p>
         </header>
 
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+          {quickActions.map((action) => (
+            <button
+              type="button"
+              key={action.view}
+              onClick={() => onNavigate?.(action.view)}
+              className="group flex h-full flex-col items-start gap-2 rounded-2xl border border-slate-200 bg-white p-6 text-left shadow-md transition duration-200 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:border-slate-700 dark:bg-slate-900"
+            >
+              <span className="text-sm font-semibold text-blue-500">
+                {action.label}
+              </span>
+              <span className="text-lg font-semibold text-slate-800 dark:text-slate-100">
+                {action.description}
+              </span>
+              <span className="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-slate-500 transition-colors duration-200 group-hover:text-blue-500 dark:text-slate-400 dark:group-hover:text-blue-400">
+                Explorar
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-4 w-4"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M7 5l5 5-5 5" />
+                </svg>
+              </span>
+            </button>
+          ))}
+        </div>
+
         <div className="grid gap-6 md:grid-cols-3">
-          <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-md md:col-span-2">
+          <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-md dark:border-slate-700 dark:bg-slate-900 md:col-span-2">
             <div className="mb-4 flex items-center justify-between">
-              <h2 className="text-lg font-semibold text-slate-800">
+              <h2 className="text-lg font-semibold text-slate-800 dark:text-slate-100">
                 Curva de crecimiento — Apple
               </h2>
               <span className="text-sm font-medium text-blue-500">
@@ -80,11 +146,11 @@ const Dashboard = ({ onBack }) => {
             </div>
           </div>
 
-          <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-md">
-            <h2 className="text-lg font-semibold text-slate-800">
+          <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-md dark:border-slate-700 dark:bg-slate-900">
+            <h2 className="text-lg font-semibold text-slate-800 dark:text-slate-100">
               Nivel de riesgo
             </h2>
-            <p className="mt-1 text-sm text-slate-500">
+            <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
               Basado en volatilidad y correlaciones actuales.
             </p>
             <div className="mt-6 h-52">
@@ -135,12 +201,12 @@ const Dashboard = ({ onBack }) => {
         </div>
 
         <div className="grid gap-6 md:grid-cols-3">
-          <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-md md:col-span-2">
+          <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-md dark:border-slate-700 dark:bg-slate-900 md:col-span-2">
             <div className="mb-4 flex items-center justify-between">
-              <h2 className="text-lg font-semibold text-slate-800">
+              <h2 className="text-lg font-semibold text-slate-800 dark:text-slate-100">
                 Rendimiento por empresa
               </h2>
-              <span className="text-sm font-medium text-slate-500">
+              <span className="text-sm font-medium text-slate-500 dark:text-slate-400">
                 Q2 2025
               </span>
             </div>
@@ -162,27 +228,31 @@ const Dashboard = ({ onBack }) => {
             </div>
           </div>
 
-          <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-md">
-            <h2 className="text-lg font-semibold text-slate-800">
+          <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-md dark:border-slate-700 dark:bg-slate-900">
+            <h2 className="text-lg font-semibold text-slate-800 dark:text-slate-100">
               Próximas oportunidades
             </h2>
-            <ul className="mt-4 space-y-3 text-sm text-slate-600">
-              <li className="rounded-2xl bg-slate-50 p-4">
-                <p className="font-semibold text-slate-800">Tesla (TSLA)</p>
+            <ul className="mt-4 space-y-3 text-sm text-slate-600 dark:text-slate-300">
+              <li className="rounded-2xl bg-slate-50 p-4 dark:bg-slate-800/70">
+                <p className="font-semibold text-slate-800 dark:text-slate-100">
+                  Tesla (TSLA)
+                </p>
                 <p className="mt-1 text-xs uppercase tracking-wide text-blue-500">
                   Momentum alcista
                 </p>
-                <p className="mt-2 text-slate-600">
+                <p className="mt-2">
                   Señal de compra generada por cruces de medias móviles y
                   volumen creciente.
                 </p>
               </li>
-              <li className="rounded-2xl bg-slate-50 p-4">
-                <p className="font-semibold text-slate-800">NVIDIA (NVDA)</p>
+              <li className="rounded-2xl bg-slate-50 p-4 dark:bg-slate-800/70">
+                <p className="font-semibold text-slate-800 dark:text-slate-100">
+                  NVIDIA (NVDA)
+                </p>
                 <p className="mt-1 text-xs uppercase tracking-wide text-green-600">
                   Crecimiento IA
                 </p>
-                <p className="mt-2 text-slate-600">
+                <p className="mt-2">
                   Demanda sostenida para soluciones de computación acelerada.
                 </p>
               </li>
@@ -190,7 +260,7 @@ const Dashboard = ({ onBack }) => {
           </div>
         </div>
 
-        <div className="flex justify-center">
+        <div className="flex flex-wrap justify-center gap-4">
           <Button className="px-8" onClick={onBack}>
             Volver al inicio
           </Button>

@@ -10,17 +10,17 @@ const HeroSection = () => {
       className="mx-auto flex max-w-6xl flex-col items-start gap-12 px-6 py-16 lg:flex-row lg:items-center"
     >
       <div className="flex-1 space-y-6">
-        <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-xs font-medium text-blue-500">
+        <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-4 py-2 text-xs font-medium text-blue-500 dark:border-blue-500/30 dark:bg-blue-500/10 dark:text-blue-300">
           <span
-            className="h-2 w-2 rounded-full bg-blue-500"
+            className="h-2 w-2 rounded-full bg-blue-500 dark:bg-blue-400"
             aria-hidden="true"
           />
           IA especializada en inversión
         </div>
-        <h1 className="text-4xl font-bold leading-tight text-slate-800 sm:text-5xl">
+        <h1 className="text-4xl font-bold leading-tight text-slate-800 dark:text-slate-100 sm:text-5xl">
           InvesAI: Tu asistente inteligente para decisiones de inversión
         </h1>
-        <p className="text-lg text-slate-600">
+        <p className="text-lg text-slate-600 dark:text-slate-300">
           Analiza mercados, descubre oportunidades y recibe recomendaciones de
           inversión respaldadas por inteligencia artificial en tiempo real.
         </p>
@@ -28,7 +28,7 @@ const HeroSection = () => {
           <Button>Comenzar</Button>
           <a
             href="#about"
-            className="inline-flex items-center justify-center rounded-xl border border-slate-200 px-6 py-3 text-sm font-semibold text-slate-600 shadow-sm transition-all duration-200 hover:border-blue-200 hover:text-blue-500"
+            className="inline-flex items-center justify-center rounded-xl border border-slate-200 px-6 py-3 text-sm font-semibold text-slate-600 shadow-sm transition-all duration-200 hover:border-blue-200 hover:text-blue-500 dark:border-slate-700 dark:text-slate-300 dark:hover:border-blue-500/40 dark:hover:text-blue-400"
           >
             Ver cómo funciona
           </a>

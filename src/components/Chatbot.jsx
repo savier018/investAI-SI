@@ -20,14 +20,14 @@ const messages = [
   },
 ];
 
-const Chatbot = ({ onShowDashboard, isDashboardView }) => {
+const Chatbot = ({ onShowDashboard, currentView }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    if (isDashboardView) {
+    if (currentView !== "home") {
       setIsOpen(false);
     }
-  }, [isDashboardView]);
+  }, [currentView]);
 
   const toggleChat = () => {
     setIsOpen((prev) => !prev);
@@ -41,7 +41,7 @@ const Chatbot = ({ onShowDashboard, isDashboardView }) => {
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4">
       {isOpen && (
-        <div className="w-80 rounded-2xl border border-slate-200 bg-white/95 shadow-lg backdrop-blur transition duration-200">
+        <div className="w-80 rounded-2xl border border-slate-200 bg-white/95 shadow-lg backdrop-blur transition duration-200 dark:border-slate-700 dark:bg-slate-900/95">
           <div className="flex items-center justify-between rounded-t-2xl bg-blue-500 px-4 py-3 text-white">
             <div>
               <p className="text-sm font-semibold">InvesAI Chat</p>
@@ -74,15 +74,15 @@ const Chatbot = ({ onShowDashboard, isDashboardView }) => {
                 key={message.id}
                 className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed shadow-sm transition ${
                   message.role === "user"
-                    ? "ml-auto bg-blue-50 text-blue-600"
-                    : "mr-auto bg-slate-100 text-slate-600"
+                    ? "ml-auto bg-blue-50 text-blue-600 dark:bg-blue-500/10 dark:text-blue-300"
+                    : "mr-auto bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300"
                 }`}
               >
                 {message.text}
               </div>
             ))}
           </div>
-          <div className="rounded-b-2xl border-t border-slate-200 bg-slate-50 px-4 py-4">
+          <div className="rounded-b-2xl border-t border-slate-200 bg-slate-50 px-4 py-4 dark:border-slate-700 dark:bg-slate-900">
             <Button className="w-full" onClick={handleShowMore}>
               Mostrar más
             </Button>
@@ -92,7 +92,7 @@ const Chatbot = ({ onShowDashboard, isDashboardView }) => {
 
       <button
         onClick={toggleChat}
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-500 text-white shadow-lg transition hover:bg-blue-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+        className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-500 text-white shadow-lg transition hover:bg-blue-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:shadow-blue-500/30"
         aria-label={isOpen ? "Cerrar chatbot" : "Abrir chatbot"}
       >
         {isOpen ? (
